@@ -1,0 +1,37 @@
+PROCEDURE produit_scalaire(VAR v1, v2 : ARRAY_OF FLOAT)
+VAR
+    i: INTEGER;
+    ps: FLOAT:=0;
+    t :integer;
+BEGIN
+    REPEAT
+        read(t);
+    UNTIL (t>0 AND t<100)
+    FOR i FROM 0 TO t-1 STEP step  DO
+        read(v1[i]);
+        read(v2[i]);
+        ps:=ps+v1[i]*v2[i];
+    END_FOR
+    write(ps);
+END
+ALGORITHM test_2_vectors
+VAR
+    two_vectors :	STRUCT
+                        vect1 : ARRAY_OF FLOAT[50];
+                        vect2 : ARRAY_OF FLOAT[50];
+                    END_STRUCT
+    n: INTEGER;
+BEGIN
+    REPEAT
+        raed(n);
+    UNTIL (n>1 )
+    FOR i FROM 0 TO n-1 STEP step  DO
+        IF (produit_scalaire(i.vect1, i.vect2)=0) THEN
+            write(i.vect1, i.vect2 ,+ 'sont orthogonaux');
+        
+        ELSE
+            write(i.vect1, i.vect2 ,+ 'ne sont pas orthogonaux');
+        END_IF
+    END_FOR
+
+END
