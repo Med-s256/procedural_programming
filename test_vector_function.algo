@@ -3,12 +3,13 @@ FUNCTION produit_scalaire(v1, v2 : ARRAY_OF FLOAT): FLOAT
 VAR
     i: INTEGER;
     ps: FLOAT:=0;
-    t :integer;
+    t :integer:=v1.length;
 BEGIN
-    REPEAT
-        read(t);
-    UNTIL (t>0 AND t<100)
-    FOR i FROM 0 TO t-1 STEP step  DO
+    IF (v1.length <> v2.length) THEN
+        Write("vectors with different sizes we cannot calculat dot product");
+        ps := NaN; 
+    END_IF
+    FOR i FROM 0 TO t-1 STEP 1  DO
         read(v1[i]);
         read(v2[i]);
         ps:=ps+v1[i]*v2[i];
@@ -26,14 +27,16 @@ VAR
 BEGIN
     REPEAT
         raed(n);
-    UNTIL (n>1 )
+    UNTIL (n>=1 )
     FOR i FROM 0 TO n-1 STEP step  DO
-        p:= produit_scalaire(i.vect1, i.vect2);
+        read(two_vectors[i].vect1);
+        read(two_vectors[i].vect2);
+        p:= produit_scalaire(two_vectors[i].vect1, two_vectors[i].vect2);
         IF (p=0) THEN
-            write(i.vect1, i.vect2 ,+ 'sont orthogonaux');
+            write(two_vectors[i].vect1, two_vectors[i].vect2 ,+ 'sont orthogonaux');
         
         ELSE
-            write(i.vect1, i.vect2 ,+ 'ne sont pas orthogonaux');
+            write(two_vectors[i].vect1, two_vectors[i].vect2 ,+ 'ne sont pas orthogonaux');
         END_IF
     END_FOR
 
